@@ -45,7 +45,7 @@ SET default_with_oids = false;
 
 CREATE TABLE public.answer (
     id bigint NOT NULL,
-    reply bit varying(100) NOT NULL,
+    reply_text character varying(100) NOT NULL,
     response smallint NOT NULL
 );
 
