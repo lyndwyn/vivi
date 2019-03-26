@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.zhaw.vivi.webContext.domain.answer.dto.AnswerMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -47,11 +48,14 @@ public class AnswerController {
 	
 	private AnswerService answerService;
 	
+	private AnswerMapper answerMapper;
+	
 	public AnswerController() {}
 	
 	@Autowired
-	public AnswerController (AnswerService answerService) {
+	public AnswerController (AnswerService answerService, AnswerMapper answerMapper) {
 		this.answerService = answerService;
+		this.answerMapper = answerMapper;
 	}
 	
 	/**

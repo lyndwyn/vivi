@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class Answer extends ExtendedEntity {
 	
 	@ApiModelProperty(required = true)
-	@Column(name = "repl_text")
+	@Column(name = "reply_text")
 	private String reply;
 	
 	@ApiModelProperty(required = true)
