@@ -1,0 +1,89 @@
+buildscript {
+	ext {
+		springBootVersion = "2.1.0.M1"
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://repo.spring.io/snapshot" }
+		maven { url "https://repo.spring.io/milestone" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version '2.1.3.RELEASE'
+	id 'java'
+	
+	// gradle (mapstruct needs this)
+    id "net.ltgt.apt" version "0.20"
+}
+
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "org.springframework.boot"
+apply plugin: "io.spring.dependency-management"
+apply plugin: 'net.ltgt.apt-eclipse'
+
+group = 'ch.zhaw'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 8
+
+repositories {
+	mavenCentral()
+	mavenLocal()
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+}
+
+ext {
+	mapstructVersion = "1.3.0.Final"
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	
+	// MapStruct
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}"
+    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    
+    // Swagger
+	compile "io.springfox:springfox-swagger2:2.9.2"
+	compile "io.springfox:springfox-swagger-ui:2.9.2"
+	
+	// Jackson ObjectMapper (JSON)
+	compile "com.fasterxml.jackson.core:jackson-databind:2.9.6"
+	
+	// PosgreSQL
+	compile "org.postgresql:postgresql:42.2.4"
+	runtimeOnly 'org.postgresql:postgresql'
+	
+	/*
+	 * Testing
+	 */
+	 // Spring Boot testing
+	testCompile "org.springframework.boot:spring-boot-starter-test"
+	testCompile "org.springframework.security:spring-security-test"
+	
+	 // MapStruct testing
+    testAnnotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+    
+    // AssertJ
+	testCompile "org.assertj:assertj-core:3.11.1"
+	
+	// H2 Database Engine
+	testCompile "com.h2database:h2:1.4.194"
+	
+	// mockito
+	testCompile "org.mockito:mockito-core:2.21.0"
+}
+
+ wrapper { //wrapper (type: Wrapper)
+    gradleVersion = '5.2.1'
+    doLast {
+    	println ':wrapper-type-lookup'
+   }
+}
