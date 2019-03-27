@@ -9,6 +9,8 @@ import ch.zhaw.vivi.config.generic.ExtendedJpaRepository;
  * entity exam.
  *
  * @author Yves Kaufmann
+ * 
+ */
 @Repository
 public interface ExamRepository extends ExtendedJpaRepository<Exam> {
 	

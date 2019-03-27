@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.zhaw.vivi.webContext.domain.exam.dto.ExamDTO;
+import ch.zhaw.vivi.webContext.domain.exam.dto.ExamMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -46,12 +48,15 @@ import io.swagger.annotations.AuthorizationScope;
 public class ExamController {
 	
 	private ExamService examService;
+	
+	private ExamMapper examMapper;
 
 	public ExamController() {}
 	
 	@Autowired
-	public ExamController (ExamService examService) {
+	public ExamController (ExamService examService, ExamMapper examMapper) {
 		this.examService = examService;
+		this.examMapper = examMapper;
 	}
 	
 	/**
@@ -72,9 +77,9 @@ public class ExamController {
 				)}
 	)
 	@GetMapping("/{id}")
-	public ResponseEntity<Exam> getById(@PathVariable Long id) {
+	public ResponseEntity<ExamDTO> getById(@PathVariable Long id) {
 		Exam exam = examService.findById(id);
-		return new ResponseEntity<>(exam, HttpStatus.OK);
+		return new ResponseEntity<>(examMapper.toDTO(exam), HttpStatus.OK);
 	}
 	
 	/**
@@ -87,9 +92,9 @@ public class ExamController {
 			response = Exam.class
 	)
 	@GetMapping({"", "/"})
-	public ResponseEntity<List<Exam>> getAll() {
+	public ResponseEntity<List<ExamDTO>> getAll() {
 		List<Exam> exams = examService.findAll();
-		return new ResponseEntity<>(exams, HttpStatus.OK);
+		return new ResponseEntity<>(examMapper.toDTOs(exams), HttpStatus.OK);
 	}
 	
 	/**
@@ -108,9 +113,15 @@ public class ExamController {
 			)}
 	)
 	@PostMapping({"", "/"})
-	public ResponseEntity<Exam> create(@Valid @RequestBody Exam exam) {
+	public ResponseEntity<ExamDTO> create(@Valid @RequestBody ExamDTO examDTO) {
+		
+		// ensure examId is null
+		examDTO.setId(null);
+		
+		// save exam
+		Exam exam = examMapper.fromDTO(examDTO);
 		examService.save(exam);
-		return new ResponseEntity<>(exam, HttpStatus.CREATED);
+		return new ResponseEntity<>(examMapper.toDTO(exam), HttpStatus.CREATED);
 	}
 	
 	/**
@@ -130,9 +141,15 @@ public class ExamController {
 				) }
 			)
 		@PutMapping("/{id}")
-		public ResponseEntity<Exam> updateById(@PathVariable Long id, @Valid @RequestBody Exam exam) {
+		public ResponseEntity<ExamDTO> updateById(@PathVariable Long id, @Valid @RequestBody ExamDTO examDTO) {
+		
+		// ensure ID's are the same
+		examDTO.setId(id);
+		
+		// update entity
+		Exam exam = examMapper.fromDTO(examDTO);
 		examService.update(exam);
-			return new ResponseEntity<>(exam, HttpStatus.OK);
+			return new ResponseEntity<>(examMapper.toDTO(exam), HttpStatus.OK);
 		}
 	
 	/**

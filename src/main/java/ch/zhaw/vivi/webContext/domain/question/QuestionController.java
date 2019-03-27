@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.zhaw.vivi.webContext.domain.question.dto.QuestionDTO;
+import ch.zhaw.vivi.webContext.domain.question.dto.QuestionMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -47,11 +49,14 @@ public class QuestionController {
 	
 	private QuestionService questionService;
 	
+	private QuestionMapper questionMapper;
+	
 	public QuestionController() {}
 	
 	@Autowired
-	public QuestionController (QuestionService questionService) {
+	public QuestionController (QuestionService questionService, QuestionMapper questionMapper) {
 		this.questionService = questionService;
+		this.questionMapper = questionMapper;
 	}
 	
 	/**
@@ -72,9 +77,9 @@ public class QuestionController {
 				)}
 	)
 	@GetMapping("/{id}")
-	public ResponseEntity<Question> getById(@PathVariable Long id) {
+	public ResponseEntity<QuestionDTO> getById(@PathVariable Long id) {
 		Question question = questionService.findById(id);
-		return new ResponseEntity<>(question, HttpStatus.OK);
+			return new ResponseEntity<>(questionMapper.toDTO(question), HttpStatus.OK);
 	}
 	
 	/**
@@ -87,9 +92,9 @@ public class QuestionController {
 			response = Question.class
 	)
 	@GetMapping({"", "/"})
-	public ResponseEntity<List<Question>> getAll() {
+	public ResponseEntity<List<QuestionDTO>> getAll() {
 		List<Question> questions = questionService.findAll();
-		return new ResponseEntity<>(questions, HttpStatus.OK);
+			return new ResponseEntity<>(questionMapper.toDTOs(questions), HttpStatus.OK);
 	}
 	
 	/**
@@ -108,9 +113,15 @@ public class QuestionController {
 			)}
 	)
 	@PostMapping({"", "/"})
-	public ResponseEntity<Question> create(@Valid @RequestBody Question question) {
+	public ResponseEntity<QuestionDTO> create(@Valid @RequestBody QuestionDTO questionDTO) {
+		
+		// ensure questionID is null
+		questionDTO.setId(null);
+		
+		// save question
+		Question question = questionMapper.fromDTO(questionDTO);
 		questionService.save(question);
-		return new ResponseEntity<>(question, HttpStatus.CREATED);
+			return new ResponseEntity<>(questionMapper.toDTO(question), HttpStatus.CREATED);
 	}
 	
 	/**
@@ -130,9 +141,15 @@ public class QuestionController {
 				) }
 			)
 		@PutMapping("/{id}")
-		public ResponseEntity<Question> updateById(@PathVariable Long id, @Valid @RequestBody Question question) {
+		public ResponseEntity<QuestionDTO> updateById(@PathVariable Long id, @Valid @RequestBody QuestionDTO questionDTO) {
+		
+		// ensure ID's are the same
+		questionDTO.setId(id);
+		
+		// update entity
+		Question question = questionMapper.fromDTO(questionDTO);
 		questionService.update(question);
-			return new ResponseEntity<>(question, HttpStatus.OK);
+			return new ResponseEntity<>(questionMapper.toDTO(question), HttpStatus.OK);
 		}
 	
 	/**

@@ -1,66 +1,51 @@
-package ch.zhaw.vivi.webContext.domain.exam;
+package ch.zhaw.vivi.webContext.domain.exam.dto;
 
 import java.sql.Date;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.Type;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import ch.zhaw.vivi.config.generic.ExtendedEntity;
+import ch.zhaw.vivi.config.generic.ExtendedDTO;
 import ch.zhaw.vivi.webContext.domain.question.Question;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 
 /**
- * This class is the Entity Exam. A Exam can hold multiple questions with its own
- * answers.
+ * DTO-class for the entity exam.
  * 
  * @author Yves Kaufmann
+ *
  */
-
-@ApiModel(value = "Exam", description = "Exam Entity")
-@Entity
-@Table(name = "exam")
-public class Exam extends ExtendedEntity {
+public class ExamDTO extends ExtendedDTO {
 	
-	@ApiModelProperty(required = true)
-	@Column(name = "name")
 	private String name;
 	
-	@ApiModelProperty(required = true)
-	@Column(name = "date")
-	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date date;
 	
-	@ApiModelProperty(required = true)
-	@Column(name = "description")
 	private String description;
 	
-	@ApiModelProperty(required = true)
-	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinTable(name = "exam_question", joinColumns = @JoinColumn(name = "exam_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
 	private Set<Question> questions;
-
-	public Exam() {}
-
+	
+	public ExamDTO() {
+		super();
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 */
+	public ExamDTO(Long id) {
+		super(id);
+	}
+	
 	/**
 	 * 
 	 * @param name
 	 * @param date
 	 * @param description
+	 * @param questions
 	 */
-	public Exam(String name, Date date, String description, Set<Question> questions) {
+	public ExamDTO(String name, Date date, String description, Set<Question> questions) {
 		super();
 		this.name = name;
 		this.date = date;
@@ -74,8 +59,9 @@ public class Exam extends ExtendedEntity {
 	 * @param name
 	 * @param date
 	 * @param description
+	 * @param questions
 	 */
-	public Exam(Long id, String name, Date date, String description, Set<Question> questions) {
+	public ExamDTO(Long id, String name, Date date, String description, Set<Question> questions) {
 		super(id);
 		this.name = name;
 		this.date = date;
@@ -146,6 +132,5 @@ public class Exam extends ExtendedEntity {
 	public void setQuestions(Set<Question> questions) {
 		this.questions = questions;
 	}
-	
 	
 }

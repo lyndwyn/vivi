@@ -3,7 +3,7 @@ package ch.zhaw.vivi.webContext.domain.answer.dto;
 import ch.zhaw.vivi.config.generic.ExtendedDTO;
 
 /**
- * DTO-class for the entity ansert.
+ * DTO-class for the entity answer.
  * 
  * @author Yves Kaufmann
  *
@@ -27,8 +27,30 @@ public class AnswerDTO extends ExtendedDTO {
 	public AnswerDTO(Long id) {
 		super(id);
 	}
-
 	
+	/**
+	 * 
+	 * @param reply
+	 * @param response
+	 */
+	public AnswerDTO(String reply, Boolean response) {
+		super();
+		this.reply = reply;
+		this.response = response;
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param reply
+	 * @param response
+	 */
+	public AnswerDTO(Long id, String reply, Boolean response) {
+		super(id);
+		this.reply = reply;
+		this.response = response;
+	}
+
 	/**
 	 * @return the reply
 	 */
