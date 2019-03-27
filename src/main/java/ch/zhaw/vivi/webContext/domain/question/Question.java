@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * This class is the Entity Question. A Question can hold multiple Answers.
  * 
- * @author Laura Steiner
+ * @author Yves Kaufmann
  *
  */
 @ApiModel(value = "Question", description = "Question Entity")

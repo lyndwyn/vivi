@@ -11,7 +11,7 @@ import ch.zhaw.vivi.webContext.domain.answer.Answer;
 
 /**
  * Mapper for the entity- and dto-class answer.
- * @author Laura Steiner
+ * @author Yves Kaufmann
  *
  */
 @Mapper(componentModel="spring", unmappedTargetPolicy=ReportingPolicy.IGNORE)

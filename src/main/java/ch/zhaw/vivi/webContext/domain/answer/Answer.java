@@ -13,7 +13,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * This class is the Entity Answer.
  * 
- * @author Laura Steiner
+ * @author Yves Kaufmann
  *
  */
 @ApiModel(value = "Answer", description = "Answer Entity")

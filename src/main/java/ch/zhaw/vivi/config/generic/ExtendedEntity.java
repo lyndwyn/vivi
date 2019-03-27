@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModel;
 /**
  * This class covers the common attributes of all entities.
  * 
- * @author Laura Steiner
+ * @author Yves Kaufmann
  */
 @MappedSuperclass
 @ApiModel(value = "ExtendedEntity", discriminator = "SuperClass") // TODO create/add subtypes: , subTypes = {User.class}

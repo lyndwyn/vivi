@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * 
  * TODO apiInfo() Text anpassen
  *
- * @author Laura Steiner
+ * @author Yves Kaufmann
  */
 @Configuration
 @EnableSwagger2

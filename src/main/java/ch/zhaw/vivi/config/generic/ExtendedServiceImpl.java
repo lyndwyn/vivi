@@ -6,7 +6,7 @@ import java.util.Optional;
 /**
  * This class implements the CrudService.
  *
- * @author Laura Steiner
+ * @author Yves Kaufmann
  * @param T Entity to be used. Childclass of ExtendedEntity
  */
 public abstract class ExtendedServiceImpl<T extends ExtendedEntity> implements ExtendedService<T> {

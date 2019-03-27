@@ -6,7 +6,7 @@ import ch.zhaw.vivi.config.generic.ExtendedService;
  * This interface holds all data access related methods targeted towards the
  * entity question.
  *
- * @author Laura Steiner
+ * @author Yves Kaufmann
  */
 public interface QuestionService extends ExtendedService<Question> {
 	

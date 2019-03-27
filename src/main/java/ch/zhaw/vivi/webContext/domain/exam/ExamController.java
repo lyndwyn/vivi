@@ -26,7 +26,7 @@ import io.swagger.annotations.AuthorizationScope;
 /**
  * This class holds all REST endpoints targeted towards the entity exam.
  * 
- * @author Laura Steiner
+ * @author Yves Kaufmann
  *
  */
 @RestController

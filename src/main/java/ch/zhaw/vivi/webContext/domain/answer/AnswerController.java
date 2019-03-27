@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ch.zhaw.vivi.webContext.domain.answer.dto.AnswerDTO;
 import ch.zhaw.vivi.webContext.domain.answer.dto.AnswerMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -27,7 +28,7 @@ import io.swagger.annotations.AuthorizationScope;
 /**
  * This class holds all REST endpoints targeted towards the entity answer.
  * 
- * @author Laura Steiner
+ * @author Yves Kaufmann
  *
  */
 @RestController
@@ -76,9 +77,9 @@ public class AnswerController {
 				)}
 	)
 	@GetMapping("/{id}")
-	public ResponseEntity<Answer> getById(@PathVariable Long id) {
+	public ResponseEntity<AnswerDTO> getById(@PathVariable Long id) {
 		Answer answer = answerService.findById(id);
-		return new ResponseEntity<>(answer, HttpStatus.OK);
+		return new ResponseEntity<>(answerMapper.toDTO(answer), HttpStatus.OK);
 	}
 	
 	/**
@@ -91,9 +92,9 @@ public class AnswerController {
 			response = Answer.class
 	)
 	@GetMapping({"", "/"})
-	public ResponseEntity<List<Answer>> getAll() {
+	public ResponseEntity<List<AnswerDTO>> getAll() {
 		List<Answer> answers = answerService.findAll();
-		return new ResponseEntity<>(answers, HttpStatus.OK);
+		return new ResponseEntity<>(answerMapper.toDTOs(answers), HttpStatus.OK);
 	}
 	
 	/**
@@ -112,9 +113,15 @@ public class AnswerController {
 			)}
 	)
 	@PostMapping({"", "/"})
-	public ResponseEntity<Answer> create(@Valid @RequestBody Answer answer) {
+	public ResponseEntity<AnswerDTO> create(@Valid @RequestBody AnswerDTO answerDTO) {
+		
+		// ensure answerID is null
+		answerDTO.setId(null);
+		
+		// save answer
+		Answer answer = answerMapper.fromDTO(answerDTO);
 		answerService.save(answer);
-		return new ResponseEntity<>(answer, HttpStatus.CREATED);
+		return new ResponseEntity<>(answerMapper.toDTO(answer), HttpStatus.CREATED);
 	}
 	
 	/**
@@ -134,9 +141,15 @@ public class AnswerController {
 				) }
 			)
 		@PutMapping("/{id}")
-		public ResponseEntity<Answer> updateById(@PathVariable Long id, @Valid @RequestBody Answer answer) {
+		public ResponseEntity<AnswerDTO> updateById(@PathVariable Long id, @Valid @RequestBody AnswerDTO answerDTO) {
+		
+		// ensure ID's are the same
+		answerDTO.setId(id);
+		
+		// update entity
+		Answer answer = answerMapper.fromDTO(answerDTO);
 		answerService.update(answer);
-			return new ResponseEntity<>(answer, HttpStatus.OK);
+			return new ResponseEntity<>(answerMapper.toDTO(answer), HttpStatus.OK);
 		}
 	
 	/**

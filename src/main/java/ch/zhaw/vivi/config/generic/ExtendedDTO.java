@@ -3,7 +3,7 @@ package ch.zhaw.vivi.config.generic;
 /**
  * This class covers the common attributes of all DTOs.
  * 
- * @author Laura Steiner
+ * @author Yves Kaufmann
  */
 public class ExtendedDTO { // not abstract so that DTOs can reference only-id nested entities
 	

@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiModelProperty;
  * This class is the Entity Exam. A Exam can hold multiple questions with its own
  * answers.
  * 
- * @author Laura Steiner
+ * @author Yves Kaufmann
  */
 
 @ApiModel(value = "Exam", description = "Exam Entity")

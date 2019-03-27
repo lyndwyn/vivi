@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * This interface covers the basic CR related methods.
  *
- * @author Laura Steiner
+ * @author Yves Kaufmann
  * @param T Entity to be used. Childclass of ExtendedEntity
  */
 public interface ExtendedService<T extends ExtendedEntity> {

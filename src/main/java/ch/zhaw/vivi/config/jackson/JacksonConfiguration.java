@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * TODO write comment
- * @author Laura Steiner
+ * @author Yves Kaufmann
  *
  */
 @Configuration

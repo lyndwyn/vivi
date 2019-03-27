@@ -8,8 +8,7 @@ import ch.zhaw.vivi.config.generic.ExtendedJpaRepository;
  * This interface holds all data access related methods targeted towards the
  * entity exam.
  *
- * @author Laura Steiner
- */
+ * @author Yves Kaufmann
 @Repository
 public interface ExamRepository extends ExtendedJpaRepository<Exam> {
 	

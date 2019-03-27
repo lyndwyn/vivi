@@ -5,7 +5,7 @@ import ch.zhaw.vivi.config.generic.ExtendedDTO;
 /**
  * DTO-class for the entity ansert.
  * 
- * @author Laura Steiner
+ * @author Yves Kaufmann
  *
  */
 public class AnswerDTO extends ExtendedDTO {
