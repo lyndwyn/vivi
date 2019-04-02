@@ -1,16 +1,12 @@
 package ch.zhaw.vivi;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@Configuration
+@EnableAutoConfiguration
+@ComponentScan({"confic", "webContext.domain"})
 public class ViviApplicationTests {
-
-	@Test
-	public void contextLoads() {
-	}
 
 }

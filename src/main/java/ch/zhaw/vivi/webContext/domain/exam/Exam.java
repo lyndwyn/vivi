@@ -40,7 +40,7 @@ public class Exam extends ExtendedEntity {
 	
 	@ApiModelProperty(required = true)
 	@Column(name = "date")
-	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private Date date;
 	
 	@ApiModelProperty(required = true)
