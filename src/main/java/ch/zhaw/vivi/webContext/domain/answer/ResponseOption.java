@@ -16,30 +16,30 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Yves Kaufmann
  *
  */
-@ApiModel(value = "Answer", description = "Answer Entity")
+@ApiModel(value = "ResponseOption", description = "ResponseOption Entity")
 @Entity
-@Table(name = "answer")
-public class Answer extends ExtendedEntity {
+@Table(name = "responseOption")
+public class ResponseOption extends ExtendedEntity {
 	
 	@ApiModelProperty(required = true)
 	@Column(name = "reply_text")
 	private String reply;
 	
 	@ApiModelProperty(required = true)
-	@Column(name = "response")
+	@Column(name = "correct")
 	@Type(type = "org.hibernate.type.NumericBooleanType")
-	private Boolean response;
+	private Boolean correct;
 	
-	public Answer() {}
+	public ResponseOption() {}
 
 	/**
 	 * 
 	 * @param reply
 	 * @param response
 	 */
-	public Answer(String reply, Boolean response) {
+	public ResponseOption(String reply, Boolean correct) {
 		this.reply = reply;
-		this.response = response;
+		this.correct = correct;
 	}
 	
 	/**
@@ -48,10 +48,10 @@ public class Answer extends ExtendedEntity {
 	 * @param reply
 	 * @param response
 	 */
-	public Answer(Long id, String reply, Boolean response) {
+	public ResponseOption(Long id, String reply, Boolean correct) {
 		super(id);
 		this.reply = reply;
-		this.response = response;
+		this.correct = correct;
 	}
 
 	
@@ -74,16 +74,16 @@ public class Answer extends ExtendedEntity {
 	/**
 	 * @return the response
 	 */
-	public Boolean getResponse() {
-		return response;
+	public Boolean getCorrect() {
+		return correct;
 	}
 
 	
 	/**
 	 * @param response the response to set
 	 */
-	public void setResponse(Boolean response) {
-		this.response = response;
+	public void setCorrect(Boolean response) {
+		this.correct = response;
 	}
 	
 }

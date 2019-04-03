@@ -1,18 +1,13 @@
 package ch.zhaw.vivi.webContext.domain.question;
 
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import ch.zhaw.vivi.config.generic.ExtendedEntity;
-import ch.zhaw.vivi.webContext.domain.answer.Answer;
+import ch.zhaw.vivi.webContext.domain.exam.Exam;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -28,52 +23,46 @@ import io.swagger.annotations.ApiModelProperty;
 public class Question extends ExtendedEntity {
 	
 	@ApiModelProperty(required = true)
-	@Column(name = "question_text")
+	@Column(name = "questionText")
 	private String question_text;
 	
-	@ApiModelProperty(required = true)
-	@Column(name = "scores")
-	private int scores;
-	
-	@ApiModelProperty(required = true)
-	@Column(name = "notice")
-	private String notice;
-	
-	@ApiModelProperty(required = true)
-	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinTable(name = "question_answer", joinColumns = @JoinColumn(name = "question_id"), inverseJoinColumns = @JoinColumn(name = "answer_id"))
-	private Set<Answer> answers;
+	@ManyToOne
+	@JoinColumn
+	private Exam exam;
 	
 	public Question() {}
 
 	/**
 	 * 
 	 * @param question_text
-	 * @param scores
-	 * @param notice
-	 * @param answers
 	 */
-	public Question(String question_text, int scores, String notice, Set<Answer> answers) {
+	public Question(String question_text) {
+		super();
 		this.question_text = question_text;
-		this.scores = scores;
-		this.notice = notice;
-		this.answers = answers;
+		this.exam = exam;
+	}
+	
+	/**
+	 * 
+	 * @param question_text
+	 * @param exam
+	 */
+	public Question(String question_text, Exam exam) {
+		super();
+		this.question_text = question_text;
+		this.exam = exam;
 	}
 	
 	/**
 	 * 
 	 * @param id
 	 * @param question_text
-	 * @param scores
-	 * @param notice
-	 * @param answers
+	 * @param exam
 	 */
-	public Question(Long id, String question_text, int scores, String notice, Set<Answer> answers) {
+	public Question(Long id, String question_text, Exam exam) {
 		super(id);
 		this.question_text = question_text;
-		this.scores = scores;
-		this.notice = notice;
-		this.answers = answers;
+		this.exam = exam;
 	}
 
 	
@@ -94,50 +83,18 @@ public class Question extends ExtendedEntity {
 
 	
 	/**
-	 * @return the scores
+	 * @return the exam
 	 */
-	public int getScores() {
-		return scores;
+	public Exam getExam() {
+		return exam;
 	}
 
 	
 	/**
-	 * @param scores the scores to set
+	 * @param exam the exam to set
 	 */
-	public void setScores(int scores) {
-		this.scores = scores;
+	public void setExam(Exam exam) {
+		this.exam = exam;
 	}
 
-	
-	/**
-	 * @return the notice
-	 */
-	public String getNotice() {
-		return notice;
-	}
-
-	
-	/**
-	 * @param notice the notice to set
-	 */
-	public void setNotice(String notice) {
-		this.notice = notice;
-	}
-
-	
-	/**
-	 * @return the answers
-	 */
-	public Set<Answer> getAnswers() {
-		return answers;
-	}
-
-	
-	/**
-	 * @param answers the answers to set
-	 */
-	public void setAnswers(Set<Answer> answers) {
-		this.answers = answers;
-	}
-	
 }

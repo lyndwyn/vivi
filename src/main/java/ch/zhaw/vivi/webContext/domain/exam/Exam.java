@@ -2,14 +2,12 @@ package ch.zhaw.vivi.webContext.domain.exam;
 
 import java.sql.Date;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -20,7 +18,8 @@ import ch.zhaw.vivi.config.generic.ExtendedEntity;
 import ch.zhaw.vivi.webContext.domain.question.Question;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * This class is the Entity Exam. A Exam can hold multiple questions with its own
@@ -39,113 +38,48 @@ public class Exam extends ExtendedEntity {
 	private String name;
 	
 	@ApiModelProperty(required = true)
-	@Column(name = "date")
+	@Column(name = "startDate")
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	private Date date;
+	private Date startDate;
 	
 	@ApiModelProperty(required = true)
-	@Column(name = "description")
-	private String description;
+	@Column(name = "endDate")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	private Date endDate;
 	
 	@ApiModelProperty(required = true)
-	@ManyToMany(fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-	@JoinTable(name = "exam_question", joinColumns = @JoinColumn(name = "exam_id"), inverseJoinColumns = @JoinColumn(name = "question_id"))
+	@Column(name = "duration")
+	private int duration;
+	
+	@ApiModelProperty(required = true)
+	@Column(name = "minimumScore")
+	private int minimumScore;
+	
+	@ApiModelProperty(required = true)
+	@OneToMany(mappedBy = "Exam", cascade = CascadeType.PERSIST)
 	private Set<Question> questions;
-
+	
+	
+	
 	public Exam() {}
 
-	/**
-	 * 
-	 * @param name
-	 * @param date
-	 * @param description
-	 */
-	public Exam(String name, Date date, String description, Set<Question> questions) {
+	public Exam(String name, Date startDate, Date endDate, int duration, int minimumScore) {
 		super();
 		this.name = name;
-		this.date = date;
-		this.description = description;
-		this.questions = questions;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.duration = duration;
+		this.minimumScore = minimumScore;
 	}
-	
-	/**
-	 * 
-	 * @param id
-	 * @param name
-	 * @param date
-	 * @param description
-	 */
-	public Exam(Long id, String name, Date date, String description, Set<Question> questions) {
-		super(id);
+
+	public Exam(String name, Date startDate, Date endDate, int duration, int minimumScore, Set<Question> questions) {
+		super();
 		this.name = name;
-		this.date = date;
-		this.description = description;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.duration = duration;
+		this.minimumScore = minimumScore;
 		this.questions = questions;
 	}
-
-	
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-
-	
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	
-	/**
-	 * @return the date
-	 */
-	public Date getDate() {
-		return date;
-	}
-
-	
-	/**
-	 * @param date the date to set
-	 */
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	
-	/**
-	 * @return the description
-	 */
-	public String getDescription() {
-		return description;
-	}
-
-	
-	/**
-	 * @param description the description to set
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	
-	/**
-	 * @return the questions
-	 */
-	public Set<Question> getQuestions() {
-		return questions;
-	}
-
-	
-	/**
-	 * @param questions the questions to set
-	 */
-	public void setQuestions(Set<Question> questions) {
-		this.questions = questions;
-	}
-	
 	
 }

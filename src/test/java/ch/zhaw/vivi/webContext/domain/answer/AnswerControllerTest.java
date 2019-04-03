@@ -26,6 +26,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.zhaw.vivi.ViviApplicationTests;
 import ch.zhaw.vivi.webContext.domain.answer.dto.AnswerDTO;
+import ch.zhaw.vivi.webContext.domain.answer.dto.AnswerMapper;
+import static org.junit.Assert.assertEquals;
 
 /**
  * JUnit-Tests the AnswerController.
@@ -46,6 +48,8 @@ public class AnswerControllerTest {
 	
 	private MockMvc mockMvc;
 	
+	private AnswerMapper answerMapper;
+	
 	private Answer answerOne;
 	private Answer answerTwo;
 	private Answer answerToBeCreated;
@@ -65,7 +69,7 @@ public class AnswerControllerTest {
 		mockMvc = MockMvcBuilders.standaloneSetup(answerController).build();
 		
 		// Setup answers
-		answerOne = new Answer(1L, "Antwort A", false);
+		/*answerOne = new Answer(1L, "Antwort A", false);
 		answerTwo = new Answer(2L, "Antwort B", true);
 		
 		answers = new ArrayList<>();
@@ -84,7 +88,7 @@ public class AnswerControllerTest {
 		
 		answerToBeCreatedDTO = new AnswerDTO("Antwort B", true);
 		answerToBeDeletedDTO = new AnswerDTO(3L, "Antwort B", true);
-	
+	*/
 	}
 	
 	/**
@@ -96,14 +100,14 @@ public class AnswerControllerTest {
 	 */
 	@Test
 	public void getById_givenId_returnsAnswer() throws JsonProcessingException, Exception {
+		answerOne = new Answer(1L, "AntwortA", false);
+		
 		when(answerService.findById(answerOne.getId())).thenReturn(answerOne);
 		
-		Answer tescht = answerService.findById(1L);
-		System.out.println(tescht.getReply());
 		mockMvc.perform(MockMvcRequestBuilders.get("/answer/{id}", answerOne.getId()))
 			.andExpect(status().isOk())
 			.andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-			.andExpect(content().json(new ObjectMapper().writeValueAsString(answerOne)));
+			.andExpect(content().json(new ObjectMapper().writeValueAsString(answerOneDTO)));
 	}
 	
 	/**
