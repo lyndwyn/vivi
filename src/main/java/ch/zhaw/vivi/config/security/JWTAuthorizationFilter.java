@@ -1,5 +1,5 @@
 package ch.zhaw.vivi.config.security;
-
+/*
 import java.io.IOException;
 import java.util.Optional;
 import java.util.function.BiConsumer;
@@ -26,8 +26,8 @@ import io.jsonwebtoken.Jwts;
  *
  * @author Yves Kaufmann
  */
-class JWTAuthorizationFilter extends OncePerRequestFilter {
-	
+class JWTAuthorizationFilter/* extends OncePerRequestFilter*/ {
+	/*
 	private UserService userService;
 	
 	private AuthenticationManager authenticationManager;
@@ -40,7 +40,7 @@ class JWTAuthorizationFilter extends OncePerRequestFilter {
 	 * @param authenticationManager
 	 * @param userServiceImpl
 	 * @param propertyReader
-	 */
+	 *
 	JWTAuthorizationFilter(
 			AuthenticationManager authenticationManager, UserService userService,
 			PropertyReader propertyReader, BiConsumer<String, Exception> logger
@@ -57,7 +57,7 @@ class JWTAuthorizationFilter extends OncePerRequestFilter {
 	 * @param req   Client request
 	 * @param res   Response to client request
 	 * @param chain Chain/Order of filters
-	 */
+	 *
 	@Override
 	protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
 			throws IOException, ServletException {
@@ -74,7 +74,7 @@ class JWTAuthorizationFilter extends OncePerRequestFilter {
 	 * @param  req    Client request
 	 * @param  header Header string
 	 * @return        UsernamePasswordAuthenticationToken
-	 */
+	 *
 	private Authentication getAuthentication(HttpServletRequest req, String header) {
 		String subject = null;
 		try {
@@ -91,5 +91,5 @@ class JWTAuthorizationFilter extends OncePerRequestFilter {
 		}
 		return null;
 	}
-	
+	*/
 }

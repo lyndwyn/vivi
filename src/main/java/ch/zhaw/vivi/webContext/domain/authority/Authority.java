@@ -16,7 +16,6 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(value = "Authority", description = "Authority Entity")
 @Entity
-@Table(name = "authority")
 public class Authority extends ExtendedEntity {
 	
 	@ApiModelProperty(required = true)

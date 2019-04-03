@@ -26,7 +26,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel(value = "Role", description = "Role Entity")
 @Entity
-@Table(name = "role")
 public class Role extends ExtendedEntity {
 
 	@ApiModelProperty(required = true)

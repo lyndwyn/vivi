@@ -20,7 +20,6 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(value = "Certificate", description = "Certificate Entity")
 @Entity
-@Table(name = "certificate")
 public class Certificate extends ExtendedEntity { 
 	
 	@ApiModelProperty(required = true)

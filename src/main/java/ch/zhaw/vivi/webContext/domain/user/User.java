@@ -30,8 +30,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @author Yves Kaufmann
  */
 @ApiModel(value = "User", description = "User Entity")
-@Entity
-@Table(name = "users")
+@Entity(name = "users")
 public class User extends ExtendedEntity {
 	
 	@ApiModelProperty(required = true)

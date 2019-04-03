@@ -3,7 +3,7 @@ package ch.zhaw.vivi.webContext.domain.question.dto;
 import java.util.Set;
 
 import ch.zhaw.vivi.config.generic.ExtendedDTO;
-import ch.zhaw.vivi.webContext.domain.answer.Answer;
+import ch.zhaw.vivi.webContext.domain.answer.ResponseOption;
 
 /**
  * DTO-class for the entity answer.
@@ -19,7 +19,7 @@ public class QuestionDTO extends ExtendedDTO {
 	
 	private String notice;
 	
-	private Set<Answer> answers;
+	private Set<ResponseOption> responseOption;
 	
 	public QuestionDTO() {
 		super();
@@ -40,12 +40,12 @@ public class QuestionDTO extends ExtendedDTO {
 	 * @param notice
 	 * @param answers
 	 */
-	public QuestionDTO(String question_text, int scores, String notice, Set<Answer> answers) {
+	public QuestionDTO(String question_text, int scores, String notice, Set<ResponseOption> responseOption) {
 		super();
 		this.question_text = question_text;
 		this.scores = scores;
 		this.notice = notice;
-		this.answers = answers;
+		this.responseOption = responseOption;
 	}
 	
 	/**
@@ -54,14 +54,14 @@ public class QuestionDTO extends ExtendedDTO {
 	 * @param question_text
 	 * @param scores
 	 * @param notice
-	 * @param answers
+	 * @param responseOption
 	 */
-	public QuestionDTO(Long id, String question_text, int scores, String notice, Set<Answer> answers) {
+	public QuestionDTO(Long id, String question_text, int scores, String notice, Set<ResponseOption> responseOption) {
 		super(id);
 		this.question_text = question_text;
 		this.scores = scores;
 		this.notice = notice;
-		this.answers = answers;
+		this.responseOption = responseOption;
 	}
 
 	
@@ -114,18 +114,19 @@ public class QuestionDTO extends ExtendedDTO {
 
 	
 	/**
-	 * @return the answers
+	 * @return the responseOption
 	 */
-	public Set<Answer> getAnswers() {
-		return answers;
+	public Set<ResponseOption> getResponseOption() {
+		return responseOption;
 	}
 
 	
 	/**
-	 * @param answers the answers to set
+	 * @param responseOption the responseOption to set
 	 */
-	public void setAnswers(Set<Answer> answers) {
-		this.answers = answers;
+	public void setResponseOption(Set<ResponseOption> responseOption) {
+		this.responseOption = responseOption;
 	}
+
 	
 }

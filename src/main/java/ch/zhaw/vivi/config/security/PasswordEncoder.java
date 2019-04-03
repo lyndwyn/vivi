@@ -2,7 +2,7 @@ package ch.zhaw.vivi.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * This class holds all password encoder beans.
@@ -12,9 +12,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @Configuration
 public class PasswordEncoder {
 
-	@Bean
+	/*@Bean
 	public BCryptPasswordEncoder pwEncoder() {
 		return new BCryptPasswordEncoder();
-	}
+	}*/
 
 }

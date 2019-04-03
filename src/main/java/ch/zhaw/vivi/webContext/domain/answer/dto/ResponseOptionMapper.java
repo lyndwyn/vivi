@@ -6,27 +6,28 @@ import java.util.Set;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
-import ch.zhaw.vivi.webContext.domain.answer.Answer;
+import ch.zhaw.vivi.webContext.domain.answer.ResponseOption;
+
 
 
 /**
- * Mapper for the entity- and dto-class answer.
+ * Mapper for the entity- and dto-class responseOption.
  * @author Yves Kaufmann
  *
  */
 @Mapper(componentModel="spring", unmappedTargetPolicy=ReportingPolicy.IGNORE)
-public interface AnswerMapper {
+public interface ResponseOptionMapper {
 	
-	Answer fromDTO(AnswerDTO answerDTO);
+	ResponseOption fromDTO(ResponseOptionDTO responseOptionDTO);
 	
-	AnswerDTO toDTO(Answer answer);
+	ResponseOptionDTO toDTO(ResponseOption responseOption);
 
-	List<Answer> fromDTOs(List<AnswerDTO> answerDTOs);
+	List<ResponseOption> fromDTOs(List<ResponseOptionDTO> responseOptionDTOs);
 	
-	List<AnswerDTO> toDTOs(List<Answer> answers);
+	List<ResponseOptionDTO> toDTOs(List<ResponseOption> responseOptions);
 	
-	Set<Answer> fromDTOs(Set<Answer> answerDTOs);
+	Set<ResponseOption> fromDTOs(Set<ResponseOption> responseOptionDTOs);
 	
-	Set<AnswerDTO> toDTOs(Set<Answer> answers);
+	Set<ResponseOptionDTO> toDTOs(Set<ResponseOption> responseOptions);
 	
 }

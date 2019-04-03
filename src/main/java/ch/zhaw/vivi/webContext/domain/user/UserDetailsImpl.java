@@ -1,15 +1,6 @@
 package ch.zhaw.vivi.webContext.domain.user;
 
-import java.util.ArrayList;
-import java.util.Collection;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import ch.zhaw.vivi.webContext.domain.authority.Authority;
-import ch.zhaw.vivi.webContext.domain.role.Role;
 
 
 
@@ -19,20 +10,20 @@ import ch.zhaw.vivi.webContext.domain.role.Role;
  *
  * @author Yves Kaufmann
  */
-public class UserDetailsImpl implements UserDetails {
-	
+public class UserDetailsImpl /*implements UserDetails*/ {
+	/*
 	private User user;
 	
 	/**
 	 *
-	 */
+	 *//*
 	public UserDetailsImpl() {
 		super();
 	}
 	
 	/**
 	 * @param user
-	 */
+	 *//*
 	@Autowired
 	public UserDetailsImpl(User user) {
 		super();
@@ -41,7 +32,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	/**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		ArrayList<SimpleGrantedAuthority> grantedAuthorities = new ArrayList<>();
@@ -65,7 +56,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	/**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	@Override
 	public String getPassword() {
 		return user.getPassword();
@@ -73,7 +64,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	/**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	@Override
 	public String getUsername() {
 		return user.getUsername();
@@ -81,7 +72,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	/**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO implement account expired check
@@ -90,7 +81,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	/**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	@Override
 	public boolean isAccountNonLocked() {
 		return !user.isLocked();
@@ -98,7 +89,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	/**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	@Override
 	public boolean isCredentialsNonExpired() {
 		// TODO implement credentials expired check
@@ -107,7 +98,7 @@ public class UserDetailsImpl implements UserDetails {
 	
 	/**
 	 * {@inheritDoc}
-	 */
+	 *//*
 	@Override
 	public boolean isEnabled() {
 		return user.isEnabled();
@@ -115,15 +106,15 @@ public class UserDetailsImpl implements UserDetails {
 	
 	/**
 	 * @return the user
-	 */
+	 *//*
 	public User getUser() {
 		return user;
 	}
 	
 	/**
 	 * @param user the user to set
-	 */
+	 *//*
 	public void setUser(User user) {
 		this.user = user;
-	}
+	}*/
 }

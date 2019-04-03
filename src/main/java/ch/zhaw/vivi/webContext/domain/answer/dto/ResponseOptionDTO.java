@@ -3,28 +3,28 @@ package ch.zhaw.vivi.webContext.domain.answer.dto;
 import ch.zhaw.vivi.config.generic.ExtendedDTO;
 
 /**
- * DTO-class for the entity answer.
+ * DTO-class for the entity responseOption.
  * 
  * @author Yves Kaufmann
  *
  */
-public class AnswerDTO extends ExtendedDTO {
+public class ResponseOptionDTO extends ExtendedDTO {
 	
 	private String reply;
 	 
-	private Boolean response;
+	private Boolean correct;
 	
 	/**
 	 * 
 	 */
-	public AnswerDTO() {
+	public ResponseOptionDTO() {
 		super();
 	}
 	
 	/**
 	 * @param id
 	 */
-	public AnswerDTO(Long id) {
+	public ResponseOptionDTO(Long id) {
 		super(id);
 	}
 	
@@ -33,10 +33,10 @@ public class AnswerDTO extends ExtendedDTO {
 	 * @param reply
 	 * @param response
 	 */
-	public AnswerDTO(String reply, Boolean response) {
+	public ResponseOptionDTO(String reply, Boolean correct) {
 		super();
 		this.reply = reply;
-		this.response = response;
+		this.correct = correct;
 	}
 	
 	/**
@@ -45,10 +45,10 @@ public class AnswerDTO extends ExtendedDTO {
 	 * @param reply
 	 * @param response
 	 */
-	public AnswerDTO(Long id, String reply, Boolean response) {
+	public ResponseOptionDTO(Long id, String reply, Boolean correct) {
 		super(id);
 		this.reply = reply;
-		this.response = response;
+		this.correct = correct;
 	}
 
 	/**
@@ -70,16 +70,16 @@ public class AnswerDTO extends ExtendedDTO {
 	/**
 	 * @return the response
 	 */
-	public Boolean getResponse() {
-		return response;
+	public Boolean getCorrect() {
+		return correct;
 	}
 
 	
 	/**
 	 * @param response the response to set
 	 */
-	public void setResponse(Boolean response) {
-		this.response = response;
+	public void setCorrect(Boolean correct) {
+		this.correct = correct;
 	}
 	
 }

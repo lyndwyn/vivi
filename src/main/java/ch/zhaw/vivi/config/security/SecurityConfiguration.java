@@ -1,5 +1,5 @@
 package ch.zhaw.vivi.config.security;
-
+/*
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,12 +24,12 @@ import ch.zhaw.vivi.webContext.domain.user.UserService;
  * This class is the main security context.
  *
  * @author Yves Kaufmann
- */
+ *//*
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-	
+@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)*/
+public class SecurityConfiguration /*extends WebSecurityConfigurerAdapter*/ {
+	/*
 	private UserService userService;
 	
 	private BCryptPasswordEncoder pwEncoder;
@@ -41,7 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	/**
 	 * @param userServiceImpl
 	 * @param pwEncoder
-	 */
+	 *
 	@Autowired
 	public SecurityConfiguration(
 			UserService userService, BCryptPasswordEncoder pwEncoder, @Qualifier("webErrorLogger") Logger errorLogger
@@ -54,7 +54,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	/**
 	 * {@inheritDoc}
-	 */
+	 *
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userService).passwordEncoder(pwEncoder);
@@ -62,10 +62,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	/**
 	 * {@inheritDoc}
-	 */
+	 *
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		propertyReader = new PropertyReader("jwt.properties");
+		//http.authorizeRequests().antMatchers("**").permitAll().anyRequest().anonymous();
+		
 		http.csrf().disable().authorizeRequests()
 		.antMatchers("/welcome", "/login", "/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html",
 				"/webjars/**")
@@ -79,6 +81,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				UsernamePasswordAuthenticationFilter.class)
 		.httpBasic().and()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	}
+	}*/
 	
 }

@@ -1,17 +1,15 @@
 package ch.zhaw.vivi.webContext.domain.completedExam;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+
 import ch.zhaw.vivi.config.generic.ExtendedEntity;
 import ch.zhaw.vivi.webContext.domain.certificate.Certificate;
 import ch.zhaw.vivi.webContext.domain.exam.Exam;
 import ch.zhaw.vivi.webContext.domain.user.User;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import org.hibernate.annotations.Type;
-
-import javax.persistence.*;
-import java.sql.Date;
 
 /**
  * This class is the Entity CompletedExam.
@@ -20,7 +18,6 @@ import java.sql.Date;
  */
 @ApiModel(value = "CompletedExam", description = "CompletedExam Entity")
 @Entity
-@Table(name = "completed_exam")
 public class CompletedExam extends ExtendedEntity {
 
 	@Column
@@ -34,7 +31,8 @@ public class CompletedExam extends ExtendedEntity {
 
 	@OneToOne
 	private Certificate certificate;
-
+	
+	@ManyToOne
 	private User user;
 
 	public CompletedExam() {

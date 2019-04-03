@@ -1,13 +1,17 @@
 package ch.zhaw.vivi.webContext.domain.question;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import ch.zhaw.vivi.config.generic.ExtendedEntity;
-import ch.zhaw.vivi.webContext.domain.exam.Exam;
+import ch.zhaw.vivi.webContext.domain.answer.ResponseOption;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -15,56 +19,37 @@ import io.swagger.annotations.ApiModelProperty;
  * This class is the Entity Question. A Question can hold multiple Answers.
  * 
  * @author Yves Kaufmann
- *
  */
-@ApiModel(value = "Question", description = "Question Entity")
+@ApiModel(
+	value = "Question",
+	description = "Question Entity"
+)
 @Entity
-@Table(name = "question")
 public class Question extends ExtendedEntity {
 	
 	@ApiModelProperty(required = true)
 	@Column(name = "questionText")
 	private String question_text;
 	
-	@ManyToOne
-	@JoinColumn
-	private Exam exam;
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY
+		)
+	private Set<ResponseOption> responseOption;
 	
 	public Question() {}
-
-	/**
-	 * 
-	 * @param question_text
-	 */
-	public Question(String question_text) {
+	
+	public Question(String question_text, Set<ResponseOption> responseOption) {
 		super();
 		this.question_text = question_text;
-		this.exam = exam;
+		this.responseOption = responseOption;
 	}
 	
-	/**
-	 * 
-	 * @param question_text
-	 * @param exam
-	 */
-	public Question(String question_text, Exam exam) {
-		super();
-		this.question_text = question_text;
-		this.exam = exam;
-	}
-	
-	/**
-	 * 
-	 * @param id
-	 * @param question_text
-	 * @param exam
-	 */
-	public Question(Long id, String question_text, Exam exam) {
+	public Question(Long id, String question_text, Set<ResponseOption> responseOption) {
 		super(id);
 		this.question_text = question_text;
-		this.exam = exam;
+		this.responseOption = responseOption;
 	}
-
 	
 	/**
 	 * @return the question_text
@@ -72,7 +57,6 @@ public class Question extends ExtendedEntity {
 	public String getQuestion_text() {
 		return question_text;
 	}
-
 	
 	/**
 	 * @param question_text the question_text to set
@@ -80,21 +64,19 @@ public class Question extends ExtendedEntity {
 	public void setQuestion_text(String question_text) {
 		this.question_text = question_text;
 	}
-
 	
 	/**
-	 * @return the exam
+	 * @return the responseOption
 	 */
-	public Exam getExam() {
-		return exam;
+	public Set<ResponseOption> getResponseOption() {
+		return responseOption;
 	}
-
 	
 	/**
-	 * @param exam the exam to set
+	 * @param responseOption the responseOption to set
 	 */
-	public void setExam(Exam exam) {
-		this.exam = exam;
+	public void setResponseOption(Set<ResponseOption> responseOption) {
+		this.responseOption = responseOption;
 	}
-
+	
 }

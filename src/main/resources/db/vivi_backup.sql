@@ -1,3 +1,4 @@
+/*
 --
 -- PostgreSQL database dump
 --
@@ -795,3 +796,4 @@ ALTER TABLE ONLY public.exam
 -- PostgreSQL database dump complete
 --
 
+*/
