@@ -8,6 +8,6 @@ import ch.zhaw.vivi.config.generic.ExtendedService;
  *
  * @author Yves Kaufmann
  */
-public interface AnswerService extends ExtendedService<Answer> {
+public interface ResponseOptionService extends ExtendedService<ResponseOption> {
 	
 }

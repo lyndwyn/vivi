@@ -12,13 +12,13 @@ import ch.zhaw.vivi.config.generic.ExtendedServiceImpl;
  *
  */
 @Service
-public class AnswerServiceImpl extends ExtendedServiceImpl<Answer> implements AnswerService {
+public class ResponseOptionServiceImpl extends ExtendedServiceImpl<ResponseOption> implements ResponseOptionService {
 	
 	/**
 	 * 
 	 * @param repository
 	 */
-	public AnswerServiceImpl(AnswerRepository repository) {
+	public  ResponseOptionServiceImpl(ResponseOptionRepository repository) {
 		super(repository);
 	}
 	

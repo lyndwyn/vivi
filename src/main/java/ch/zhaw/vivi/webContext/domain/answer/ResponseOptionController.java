@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.zhaw.vivi.webContext.domain.answer.dto.AnswerDTO;
-import ch.zhaw.vivi.webContext.domain.answer.dto.AnswerMapper;
+import ch.zhaw.vivi.webContext.domain.answer.dto.ResponseOptionDTO;
+import ch.zhaw.vivi.webContext.domain.answer.dto.ResponseOptionMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -45,16 +45,16 @@ import io.swagger.annotations.AuthorizationScope;
 					) }
 		) }
 	)
-public class AnswerController {
+public class ResponseOptionController {
 	
-	private AnswerService answerService;
+	private ResponseOptionService answerService;
 	
-	private AnswerMapper answerMapper;
+	private ResponseOptionMapper answerMapper;
 	
-	public AnswerController() {}
+	public ResponseOptionController() {}
 	
 	@Autowired
-	public AnswerController (AnswerService answerService, AnswerMapper answerMapper) {
+	public ResponseOptionController(ResponseOptionService answerService, ResponseOptionMapper answerMapper) {
 		this.answerService = answerService;
 		this.answerMapper = answerMapper;
 	}
@@ -67,7 +67,7 @@ public class AnswerController {
 	 */
 	@ApiOperation(
 			value = "This endpoint returns the requested answer",
-			response = Answer.class
+			response = ResponseOption.class
 	)
 	@ApiImplicitParams(
 			{
@@ -77,8 +77,8 @@ public class AnswerController {
 				)}
 	)
 	@GetMapping("/{id}")
-	public ResponseEntity<AnswerDTO> getById(@PathVariable Long id) {
-		Answer answer = answerService.findById(id);
+	public ResponseEntity<ResponseOptionDTO> getById(@PathVariable Long id) {
+		ResponseOption answer = answerService.findById(id);
 		return new ResponseEntity<>(answerMapper.toDTO(answer), HttpStatus.OK);
 	}
 	
@@ -89,11 +89,11 @@ public class AnswerController {
 	 */
 	@ApiOperation(
 			value = "This endpoint returns all answers",
-			response = Answer.class
+			response = ResponseOption.class
 	)
 	@GetMapping({"", "/"})
-	public ResponseEntity<List<AnswerDTO>> getAll() {
-		List<Answer> answers = answerService.findAll();
+	public ResponseEntity<List<ResponseOptionDTO>> getAll() {
+		List<ResponseOption> answers = answerService.findAll();
 		return new ResponseEntity<>(answerMapper.toDTOs(answers), HttpStatus.OK);
 	}
 	
@@ -104,7 +104,7 @@ public class AnswerController {
 	 */
 	@ApiOperation(
 		value = "This endpoint creates an answer",
-		response = Answer.class
+		response = ResponseOption.class
 	)
 	@ApiImplicitParams(
 			{ @ApiImplicitParam(
@@ -113,13 +113,13 @@ public class AnswerController {
 			)}
 	)
 	@PostMapping({"", "/"})
-	public ResponseEntity<AnswerDTO> create(@Valid @RequestBody AnswerDTO answerDTO) {
+	public ResponseEntity<ResponseOptionDTO> create(@Valid @RequestBody ResponseOptionDTO answerDTO) {
 		
 		// ensure answerID is null
 		answerDTO.setId(null);
 		
 		// save answer
-		Answer answer = answerMapper.fromDTO(answerDTO);
+		ResponseOption answer = answerMapper.fromDTO(answerDTO);
 		answerService.save(answer);
 		return new ResponseEntity<>(answerMapper.toDTO(answer), HttpStatus.CREATED);
 	}
@@ -132,7 +132,7 @@ public class AnswerController {
 	 */
 	@ApiOperation(
 			value = "This endpoint updates the requested answer",
-			response = Answer.class
+			response = ResponseOption.class
 		)
 		@ApiImplicitParams(
 				{ @ApiImplicitParam(
@@ -141,13 +141,13 @@ public class AnswerController {
 				) }
 			)
 		@PutMapping("/{id}")
-		public ResponseEntity<AnswerDTO> updateById(@PathVariable Long id, @Valid @RequestBody AnswerDTO answerDTO) {
+		public ResponseEntity<ResponseOptionDTO> updateById(@PathVariable Long id, @Valid @RequestBody ResponseOptionDTO answerDTO) {
 		
 		// ensure ID's are the same
 		answerDTO.setId(id);
 		
 		// update entity
-		Answer answer = answerMapper.fromDTO(answerDTO);
+		ResponseOption answer = answerMapper.fromDTO(answerDTO);
 		answerService.update(answer);
 			return new ResponseEntity<>(answerMapper.toDTO(answer), HttpStatus.OK);
 		}
@@ -160,7 +160,7 @@ public class AnswerController {
 	 */
 	@ApiOperation(
 		value = "This endpoint deletes the requested answer",
-		response = Answer.class
+		response = ResponseOption.class
 	)
 	@ApiImplicitParams(
 		{ @ApiImplicitParam(

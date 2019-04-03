@@ -11,6 +11,6 @@ import ch.zhaw.vivi.config.generic.ExtendedJpaRepository;
  * @author Yves Kaufmann
  */
 @Repository
-public interface AnswerRepository extends ExtendedJpaRepository<Answer> {
+public interface ResponseOptionRepository extends ExtendedJpaRepository<ResponseOption> {
 	
 }
