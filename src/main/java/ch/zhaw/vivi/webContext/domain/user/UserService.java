@@ -1,6 +1,6 @@
 package ch.zhaw.vivi.webContext.domain.user;
 
-//import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import ch.zhaw.vivi.config.generic.ExtendedService;
 
@@ -13,7 +13,7 @@ import ch.zhaw.vivi.config.generic.ExtendedService;
  * @author Yves Kaufmann
  *
  */
-public interface UserService extends /*UserDetailsService,*/ ExtendedService<User> {
+public interface UserService extends UserDetailsService, ExtendedService<User> {
 	
 	/**
 	 * This method finds a User with a given name

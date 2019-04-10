@@ -1,9 +1,13 @@
 package ch.zhaw.vivi.webContext.domain.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ch.zhaw.vivi.config.generic.ExtendedServiceImpl;
+
 
 
 
@@ -15,29 +19,26 @@ import ch.zhaw.vivi.config.generic.ExtendedServiceImpl;
  */
 @Service
 public class UserServiceImpl extends ExtendedServiceImpl<User> implements UserService {
-	
-	//private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+
 	/**
 	 * @param repository
 	 */
 	@Autowired
-	UserServiceImpl(UserRepository repository/*, BCryptPasswordEncoder bCryptPasswordEncoder*/) {
+	UserServiceImpl(UserRepository repository, BCryptPasswordEncoder bCryptPasswordEncoder) {
 		super(repository);
-		//this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 	}
-	
-	/**
-	 * {@inheritDoc}
-	 *//*
+
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		User user = findByUsername(username);
-		
+
 		if (user == null) { throw new UsernameNotFoundException("User could not be found"); }
 		return new UserDetailsImpl(user);
 	}
-	*/
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -46,7 +47,7 @@ public class UserServiceImpl extends ExtendedServiceImpl<User> implements UserSe
 		User user = ((UserRepository) repository).findByUsername(name);
 		return user;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -54,5 +55,5 @@ public class UserServiceImpl extends ExtendedServiceImpl<User> implements UserSe
 	public void deleteByUsername(String name) {
 		((UserRepository) repository).deleteByUsername(name);
 	}
-	
+
 }

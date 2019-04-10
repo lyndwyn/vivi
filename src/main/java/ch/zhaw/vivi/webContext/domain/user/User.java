@@ -115,8 +115,6 @@ public class User extends ExtendedEntity {
 	 * @param locked
 	 * @param enabled
 	 * @param roles
-	 * @param company
-	 * @param starting_year
 	 */
 	public User(
 			Long id, String username, String password, String name, String surname, Date accountExpirationDate,
