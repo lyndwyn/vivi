@@ -89,6 +89,79 @@ INSERT INTO public.users_role VALUES (
 			2
 		);	
 
+INSERT INTO public.response_option(id, reply_text, correct) VALUES (
+			1,
+			'they were able to land',
+			1
+);
+
+INSERT INTO public.response_option(id, reply_text, correct)  VALUES (
+			2,
+			'they will able to land',
+			0
+);
+INSERT INTO public.response_option(id, reply_text, correct)  VALUES (
+			3,
+			'as long as',
+			1
+);
+
+INSERT INTO public.response_option(id, reply_text, correct)  VALUES (
+			4,
+			'until',
+			0
+);
+
+
+INSERT INTO public.question(id, question_text) VALUES (
+			1,
+			'It will be fine _ you do it the way I told you.'
+);
+
+INSERT INTO public.question(id, question_text) VALUES (
+			2,
+			'If _ a man on the moon, why cant they sort out paper-jams?'
+);
+
+INSERT INTO public.question_response_option VALUES (
+			1,
+			1
+);
+
+INSERT INTO public.question_response_option VALUES (
+			1,
+			2
+);
+
+INSERT INTO public.question_response_option VALUES (
+			2,
+			3
+);
+
+INSERT INTO public.question_response_option VALUES (
+			2,
+			4
+);
+
+INSERT INTO public.exam_questions VALUES (
+			1,
+			1
+);
+
+INSERT INTO public.exam_questions VALUES (
+			1,
+			2
+);
+
+INSERT INTO public.exam(id, name, start_date, end_date, duration, minimum_score) VALUES (
+			1,
+			'Cambridge Advanced C1',
+			'2019-04-10',
+			'2019-04-10',
+			4,
+			70
+);
+
 SET session_replication_role = DEFAULT;
 		
 		
