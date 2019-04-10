@@ -1,11 +1,12 @@
 package ch.zhaw.vivi.config.security;
-/*
-import org.slf4j.Logger;
+
+import java.util.Properties;
+
+import ch.zhaw.vivi.webContext.domain.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -14,73 +15,62 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import ch.zhaw.vivi.config.PropertyReader;
-import ch.zhaw.vivi.webContext.domain.user.UserService;
-
-
-
 
 /**
- * This class is the main security context.
+ * This class is the main security context
  *
  * @author Yves Kaufmann
- *//*
-@Configuration
+ */
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)*/
-public class SecurityConfiguration /*extends WebSecurityConfigurerAdapter*/ {
-	/*
-	private UserService userService;
+@PropertySource("/jwt.properties")
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+	// field injection bcause this class doesn't need to be tested
+	@Autowired private UserService userService;
+
+	@Autowired private BCryptPasswordEncoder pwEncoder;
 	
-	private BCryptPasswordEncoder pwEncoder;
-	
-	private PropertyReader propertyReader;
-	
-	private Logger errorLogger;
-	
-	/**
-	 * @param userServiceImpl
-	 * @param pwEncoder
-	 *
-	@Autowired
-	public SecurityConfiguration(
-			UserService userService, BCryptPasswordEncoder pwEncoder, @Qualifier("webErrorLogger") Logger errorLogger
-	) {
-		super();
-		this.userService = userService;
-		this.pwEncoder = pwEncoder;
-		this.errorLogger = errorLogger;
-	}
-	
+	@Autowired @Qualifier("jwtProperties")
+	private Properties properties;
+
 	/**
 	 * {@inheritDoc}
-	 *
+	 */
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// registers the UserDetailsService (used to loadByUsername) and the password
+		// encoder to be used
+		System.out.println(properties.getProperty("jwt.expiration-time") + "TEST");
 		auth.userDetailsService(userService).passwordEncoder(pwEncoder);
 	}
 	
 	/**
 	 * {@inheritDoc}
-	 *
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		propertyReader = new PropertyReader("jwt.properties");
-		//http.authorizeRequests().antMatchers("**").permitAll().anyRequest().anonymous();
+		// create filters for later use
+		var authenticationReqMatcher = new AntPathRequestMatcher("/login", "POST");
+		var authenticationFilter = 
+				new JWTAuthenticationFilter(authenticationManager(), properties, authenticationReqMatcher);
 		
-		http.csrf().disable().authorizeRequests()
-		.antMatchers("/welcome", "/login", "/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html",
-				"/webjars/**")
-		.permitAll().anyRequest().authenticated().and()
-		.addFilterAfter(
-				new JWTAuthenticationFilter(new AntPathRequestMatcher("/login", "POST"),
-						authenticationManagerBean(), propertyReader),
-				UsernamePasswordAuthenticationFilter.class)
-		.addFilterAfter(
-				new JWTAuthorizationFilter(authenticationManagerBean(), userService, propertyReader, errorLogger::info),
-				UsernamePasswordAuthenticationFilter.class)
-		.httpBasic().and()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	}*/
-	
+		var authorizationFilter = 
+				new JWTAuthorizationFilter(userService, properties);
+		
+		// configure security
+		http.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/welcome", "/login", "/v2/api-docs", "/swagger-resources/**", "/swagger-ui.html",
+						"/webjars/**")
+				.permitAll()
+			.anyRequest().authenticated().and()
+			.addFilterAfter(
+					authenticationFilter,
+					UsernamePasswordAuthenticationFilter.class)
+			.addFilterAfter(
+					authorizationFilter,
+					UsernamePasswordAuthenticationFilter.class)
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+	}
+
 }
