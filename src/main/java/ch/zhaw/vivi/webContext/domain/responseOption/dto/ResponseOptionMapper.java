@@ -1,13 +1,11 @@
-package ch.zhaw.vivi.webContext.domain.answer.dto;
+package ch.zhaw.vivi.webContext.domain.responseOption.dto;
 
 import java.util.List;
 import java.util.Set;
 
+import ch.zhaw.vivi.webContext.domain.responseOption.ResponseOption;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-
-import ch.zhaw.vivi.webContext.domain.answer.ResponseOption;
-
 
 
 /**

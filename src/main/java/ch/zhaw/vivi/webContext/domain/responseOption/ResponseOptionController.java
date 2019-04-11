@@ -1,9 +1,10 @@
-package ch.zhaw.vivi.webContext.domain.answer;
+package ch.zhaw.vivi.webContext.domain.responseOption;
 
 import java.util.List;
 
 import javax.validation.Valid;
 
+import ch.zhaw.vivi.webContext.domain.responseOption.dto.ResponseOptionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,8 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import ch.zhaw.vivi.webContext.domain.answer.dto.ResponseOptionDTO;
-import ch.zhaw.vivi.webContext.domain.answer.dto.ResponseOptionMapper;
+import ch.zhaw.vivi.webContext.domain.responseOption.dto.ResponseOptionDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;

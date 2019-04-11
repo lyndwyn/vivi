@@ -1,4 +1,4 @@
-package ch.zhaw.vivi.webContext.domain.answer.dto;
+package ch.zhaw.vivi.webContext.domain.responseOption.dto;
 
 import ch.zhaw.vivi.config.generic.ExtendedDTO;
 

@@ -3,7 +3,7 @@ package ch.zhaw.vivi.webContext.domain.question.dto;
 import java.util.Set;
 
 import ch.zhaw.vivi.config.generic.ExtendedDTO;
-import ch.zhaw.vivi.webContext.domain.answer.ResponseOption;
+import ch.zhaw.vivi.webContext.domain.responseOption.ResponseOption;
 
 /**
  * DTO-class for the entity answer.

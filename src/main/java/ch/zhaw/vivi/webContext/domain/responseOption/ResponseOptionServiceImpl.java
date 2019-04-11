@@ -1,4 +1,4 @@
-package ch.zhaw.vivi.webContext.domain.answer;
+package ch.zhaw.vivi.webContext.domain.responseOption;
 
 import org.springframework.stereotype.Service;
 

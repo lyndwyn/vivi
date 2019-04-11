@@ -1,4 +1,4 @@
-package ch.zhaw.vivi.webContext.domain.answer;
+package ch.zhaw.vivi.webContext.domain.responseOption;
 
 import ch.zhaw.vivi.config.generic.ExtendedService;
 

@@ -1,4 +1,4 @@
-package ch.zhaw.vivi.webContext.domain.answer;
+package ch.zhaw.vivi.webContext.domain.responseOption;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,20 +32,20 @@ public class ResponseOption extends ExtendedEntity {
 	public ResponseOption() {}
 
 	/**
-	 * 
+	 *
 	 * @param reply
-	 * @param response
+	 * @param correct
 	 */
 	public ResponseOption(String reply, Boolean correct) {
 		this.reply = reply;
 		this.correct = correct;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param id
 	 * @param reply
-	 * @param response
+	 * @param correct
 	 */
 	public ResponseOption(Long id, String reply, Boolean correct) {
 		super(id);

@@ -65,21 +65,7 @@ INSERT INTO public.authority_role VALUES (
 			2, 
 			2
 		);
-		
-/*
- * Link Authorities to Role-User (read) -> user has no authorities
- * 
- * 
-INSERT INTO public.authority_role VALUES (
-			2, 
-			2
-		);
-*/		
-		
-/*
- * Link Roles to Users: Admin
- * users_role(users_id, role_id)
- * */
+
 INSERT INTO public.users_role VALUES (
 			1, 
 			1
@@ -89,29 +75,29 @@ INSERT INTO public.users_role VALUES (
 			2
 		);	
 
-INSERT INTO public.response_option(id, reply_text, correct) VALUES (
+INSERT INTO public.response_option(id, reply_text, correct)  VALUES (
 			1,
-			'they were able to land',
-			1
-);
-
-INSERT INTO public.response_option(id, reply_text, correct)  VALUES (
-			2,
-			'they will able to land',
-			0
-);
-INSERT INTO public.response_option(id, reply_text, correct)  VALUES (
-			3,
 			'as long as',
 			1
 );
 
 INSERT INTO public.response_option(id, reply_text, correct)  VALUES (
-			4,
+			2,
 			'until',
 			0
 );
 
+INSERT INTO public.response_option(id, reply_text, correct) VALUES (
+			3,
+			'they were able to land',
+			1
+);
+
+INSERT INTO public.response_option(id, reply_text, correct)  VALUES (
+			4,
+			'they will able to land',
+			0
+);
 
 INSERT INTO public.question(id, question_text) VALUES (
 			1,
