@@ -1,15 +1,15 @@
 package ch.zhaw.vivi.webContext.domain.completedExam;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import ch.zhaw.vivi.config.generic.ExtendedEntity;
 import ch.zhaw.vivi.webContext.domain.certificate.Certificate;
 import ch.zhaw.vivi.webContext.domain.exam.Exam;
+import ch.zhaw.vivi.webContext.domain.givenResponse.GivenResponse;
 import ch.zhaw.vivi.webContext.domain.user.User;
 import io.swagger.annotations.ApiModel;
+
+import java.util.Set;
 
 /**
  * This class is the Entity CompletedExam.
@@ -35,6 +35,12 @@ public class CompletedExam extends ExtendedEntity {
 	@ManyToOne
 	private User user;
 
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER
+	)
+	private Set<GivenResponse> givenResponses;
+
 	public CompletedExam() {
 	}
 
@@ -42,21 +48,23 @@ public class CompletedExam extends ExtendedEntity {
 		super(id);
 	}
 
-	public CompletedExam(Integer score, Boolean passed, Exam exam, Certificate certificate, User user) {
+	public CompletedExam(Integer score, Boolean passed, Exam exam, Certificate certificate, User user, Set<GivenResponse> givenResponses) {
 		this.score = score;
 		this.passed = passed;
 		this.exam = exam;
 		this.certificate = certificate;
 		this.user = user;
+		this.givenResponses = givenResponses;
 	}
 
-	public CompletedExam(Long id, Integer score, Boolean passed, Exam exam, Certificate certificate, User user) {
+	public CompletedExam(Long id, Integer score, Boolean passed, Exam exam, Certificate certificate, User user, Set<GivenResponse> givenResponses) {
 		super(id);
 		this.score = score;
 		this.passed = passed;
 		this.exam = exam;
 		this.certificate = certificate;
 		this.user = user;
+		this.givenResponses = givenResponses;
 	}
 
 	public Integer getScore() {
@@ -97,5 +105,13 @@ public class CompletedExam extends ExtendedEntity {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public Set<GivenResponse> getGivenResponses() {
+		return givenResponses;
+	}
+
+	public void setGivenResponses(Set<GivenResponse> givenResponses) {
+		this.givenResponses = givenResponses;
 	}
 }
