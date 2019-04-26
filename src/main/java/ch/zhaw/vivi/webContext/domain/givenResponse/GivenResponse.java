@@ -16,6 +16,10 @@ public class GivenResponse extends ExtendedEntity {
 
     public GivenResponse() { }
 
+    public GivenResponse(Long id){
+        super(id);
+    }
+
     public GivenResponse(ResponseOption responseOption) {
         this.responseOption = responseOption;
     }

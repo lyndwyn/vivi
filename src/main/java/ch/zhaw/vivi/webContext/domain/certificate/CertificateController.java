@@ -18,7 +18,7 @@ import java.util.List;
  *
  */
 @RestController
-@RequestMapping("/certificate")
+@RequestMapping("/certificates")
 @Api(
 		value = "AnswerController",
 		description = "This class holds all REST endpoints targeted towards the entity certificate",

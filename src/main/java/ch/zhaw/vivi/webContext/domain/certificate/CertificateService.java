@@ -9,5 +9,6 @@ import ch.zhaw.vivi.config.generic.ExtendedService;
  * @author Yves Kaufmann
  */
 public interface CertificateService extends ExtendedService<Certificate> {
-	
+
+    public Certificate generate(Certificate certificate);
 }

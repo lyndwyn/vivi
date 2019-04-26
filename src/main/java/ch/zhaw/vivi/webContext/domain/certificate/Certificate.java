@@ -1,6 +1,7 @@
 package ch.zhaw.vivi.webContext.domain.certificate;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.*;
 
@@ -24,9 +25,7 @@ public class Certificate extends ExtendedEntity {
 	
 	@ApiModelProperty(required = true)
 	@Column(name = "issueDate")
-	@Type(type = "date")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Europe/Zurich")
-	private Date issueDate;
+	private LocalDate issueDate;
 
 	@ManyToOne
 	private User user;
@@ -38,22 +37,21 @@ public class Certificate extends ExtendedEntity {
 		super(id);
 	}
 
-	public Certificate(Date issueDate, User user) {
-		this.issueDate = issueDate;
+	public Certificate(User user) {
 		this.user = user;
 	}
 
-	public Certificate(Long id, Date issueDate, User user) {
+	public Certificate(Long id, LocalDate issueDate, User user) {
 		super(id);
 		this.issueDate = issueDate;
 		this.user = user;
 	}
 
-	public Date getIssueDate() {
+	public LocalDate getIssueDate() {
 		return issueDate;
 	}
 
-	public void setIssueDate(Date issueDate) {
+	public void setIssueDate(LocalDate issueDate) {
 		this.issueDate = issueDate;
 	}
 

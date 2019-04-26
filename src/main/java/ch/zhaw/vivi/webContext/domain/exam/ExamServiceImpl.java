@@ -17,5 +17,5 @@ public class ExamServiceImpl extends ExtendedServiceImpl<Exam> implements ExamSe
 	public ExamServiceImpl(ExamRepository repository) {
 		super(repository);
 	}
-	
+
 }

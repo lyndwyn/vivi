@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
  * @author Yves Kaufmann
  */
 @Repository
-public interface CompletedExamRepository extends ExtendedJpaRepository<CompletedExam> {
+public interface OngoingExamRepository extends ExtendedJpaRepository<OngoingExam> {
 	
 }

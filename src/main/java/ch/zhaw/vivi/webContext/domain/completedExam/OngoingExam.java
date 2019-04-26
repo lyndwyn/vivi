@@ -1,7 +1,5 @@
 package ch.zhaw.vivi.webContext.domain.completedExam;
 
-import javax.persistence.*;
-
 import ch.zhaw.vivi.config.generic.ExtendedEntity;
 import ch.zhaw.vivi.webContext.domain.certificate.Certificate;
 import ch.zhaw.vivi.webContext.domain.exam.Exam;
@@ -9,19 +7,24 @@ import ch.zhaw.vivi.webContext.domain.givenResponse.GivenResponse;
 import ch.zhaw.vivi.webContext.domain.user.User;
 import io.swagger.annotations.ApiModel;
 
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
- * This class is the Entity CompletedExam.
+ * This class is the Entity OngoingExam.
  * 
  * @author Yves Kaufmann
  */
-@ApiModel(value = "CompletedExam", description = "CompletedExam Entity")
+@ApiModel(value = "OngoingExam", description = "OngoingExam Entity")
 @Entity
-public class CompletedExam extends ExtendedEntity {
+public class OngoingExam extends ExtendedEntity {
 
 	@Column
-	private Integer score;
+	private int score;
 
 	@Column
 	private Boolean passed;
@@ -39,44 +42,54 @@ public class CompletedExam extends ExtendedEntity {
 			cascade = CascadeType.ALL,
 			fetch = FetchType.EAGER
 	)
-	private Set<GivenResponse> givenResponses;
+	private Set<GivenResponse> givenResponses = new HashSet<>();
 
-	public CompletedExam() {
+	@Column
+	private LocalTime startTime;
+
+	@Column
+	private LocalTime endTime;
+
+	@Column
+	private Boolean completed;
+
+
+
+	public OngoingExam() {
 	}
 
-	public CompletedExam(Long id) {
+	public OngoingExam(Long id) {
 		super(id);
 	}
 
-	public CompletedExam(Integer score, Boolean passed, Exam exam, Certificate certificate, User user, Set<GivenResponse> givenResponses) {
+	public OngoingExam(Exam exam, User user) {
+		this.exam = exam;
+		this.user = user;
+	}
+
+	public OngoingExam(Long id, int score, Boolean passed, Exam exam, Certificate certificate, User user, Set<GivenResponse> givenResponses, LocalTime startTime, LocalTime endTime, Boolean completed) {
+		super(id);
 		this.score = score;
 		this.passed = passed;
 		this.exam = exam;
 		this.certificate = certificate;
 		this.user = user;
 		this.givenResponses = givenResponses;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.completed = completed;
 	}
 
-	public CompletedExam(Long id, Integer score, Boolean passed, Exam exam, Certificate certificate, User user, Set<GivenResponse> givenResponses) {
-		super(id);
-		this.score = score;
-		this.passed = passed;
-		this.exam = exam;
-		this.certificate = certificate;
-		this.user = user;
-		this.givenResponses = givenResponses;
-	}
-
-	public Integer getScore() {
+	public int getScore() {
 		return score;
 	}
 
-	public void setScore(Integer score) {
-		this.score = score;
+	public void setScore(int score) {
+		this.score += score;
 	}
 
-	public Boolean getPassed() {
-		return passed;
+	public Boolean isPassed() {
+		return getScore() >= exam.getMinimumScore() ? true : false;
 	}
 
 	public void setPassed(Boolean passed) {
@@ -113,5 +126,29 @@ public class CompletedExam extends ExtendedEntity {
 
 	public void setGivenResponses(Set<GivenResponse> givenResponses) {
 		this.givenResponses = givenResponses;
+	}
+
+	public LocalTime getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
+	}
+
+	public LocalTime getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
+	}
+
+	public Boolean isCompleted() {
+		return completed;
+	}
+
+	public void setCompleted(Boolean completed) {
+		this.completed = completed;
 	}
 }

@@ -32,7 +32,7 @@ import io.swagger.annotations.AuthorizationScope;
  *
  */
 @RestController
-@RequestMapping("/exam")
+@RequestMapping("/exams")
 @Api(
 		value = "ExamController",
 		description = "This class holds all REST endpoints targeted towards the entity exam",
@@ -46,7 +46,7 @@ import io.swagger.annotations.AuthorizationScope;
 		) }
 	)
 public class ExamController {
-	
+
 	private ExamService examService;
 	
 	private ExamMapper examMapper;

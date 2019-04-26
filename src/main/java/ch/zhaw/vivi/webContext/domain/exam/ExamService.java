@@ -10,5 +10,5 @@ import ch.zhaw.vivi.config.generic.ExtendedService;
  *
  */
 public interface ExamService extends ExtendedService<Exam> {
-	
+
 }

@@ -31,6 +31,10 @@ public class ResponseOption extends ExtendedEntity {
 	
 	public ResponseOption() {}
 
+	public ResponseOption(Long id) {
+		super(id);
+	}
+
 	/**
 	 *
 	 * @param reply

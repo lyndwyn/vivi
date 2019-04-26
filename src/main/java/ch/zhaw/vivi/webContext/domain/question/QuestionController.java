@@ -32,7 +32,7 @@ import io.swagger.annotations.AuthorizationScope;
  *
  */
 @RestController
-@RequestMapping("/question")
+@RequestMapping("/questions")
 @Api(
 		value = "AnswerController",
 		description = "This class holds all REST endpoints targeted towards the entity question",
