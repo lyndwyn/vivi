@@ -7,7 +7,6 @@ import ch.zhaw.vivi.webContext.domain.givenResponse.GivenResponse;
 import ch.zhaw.vivi.webContext.domain.responseOption.ResponseOption;
 import ch.zhaw.vivi.webContext.domain.responseOption.ResponseOptionService;
 import ch.zhaw.vivi.webContext.domain.user.User;
-import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;

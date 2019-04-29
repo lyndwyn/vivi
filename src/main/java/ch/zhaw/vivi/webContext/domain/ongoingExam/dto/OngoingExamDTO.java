@@ -1,10 +1,9 @@
-package ch.zhaw.vivi.webContext.domain.completedExam.dto;
+package ch.zhaw.vivi.webContext.domain.ongoingExam.dto;
 
 import ch.zhaw.vivi.config.generic.ExtendedDTO;
 import ch.zhaw.vivi.webContext.domain.exam.dto.ExamDTO;
 import ch.zhaw.vivi.webContext.domain.user.dto.UserDTO;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 /**

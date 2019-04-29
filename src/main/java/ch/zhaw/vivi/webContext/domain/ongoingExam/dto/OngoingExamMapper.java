@@ -1,6 +1,6 @@
-package ch.zhaw.vivi.webContext.domain.completedExam.dto;
+package ch.zhaw.vivi.webContext.domain.ongoingExam.dto;
 
-import ch.zhaw.vivi.webContext.domain.completedExam.OngoingExam;
+import ch.zhaw.vivi.webContext.domain.ongoingExam.OngoingExam;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Mapper for the entity- and dto-class completedExam.
+ * Mapper for the entity- and dto-class ongoingExam.
  * 
  * @author Yves Kaufmann
  *

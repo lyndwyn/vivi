@@ -17,7 +17,7 @@ public class RestExceptionHandler {
     @ExceptionHandler(value = IllegalAccessException.class)
     public ResponseEntity<Object> illegalAccessException(IllegalAccessException exception){
 
-        return new ResponseEntity<>("You are not allowed to call this method with the given request.", HttpStatus.METHOD_NOT_ALLOWED);
+        return new ResponseEntity<>("You already gave this response", HttpStatus.METHOD_NOT_ALLOWED);
     }
 
 }
