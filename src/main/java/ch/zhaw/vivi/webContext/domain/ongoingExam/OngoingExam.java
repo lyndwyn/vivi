@@ -1,4 +1,4 @@
-package ch.zhaw.vivi.webContext.domain.completedExam;
+package ch.zhaw.vivi.webContext.domain.ongoingExam;
 
 import ch.zhaw.vivi.config.generic.ExtendedEntity;
 import ch.zhaw.vivi.webContext.domain.certificate.Certificate;
@@ -8,8 +8,6 @@ import ch.zhaw.vivi.webContext.domain.user.User;
 import io.swagger.annotations.ApiModel;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.Set;

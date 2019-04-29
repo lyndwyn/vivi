@@ -1,31 +1,19 @@
-package ch.zhaw.vivi.webContext.domain.completedExam;
+package ch.zhaw.vivi.webContext.domain.ongoingExam;
 
-import ch.zhaw.vivi.webContext.domain.completedExam.dto.OngoingExamDTO;
-import ch.zhaw.vivi.webContext.domain.completedExam.dto.OngoingExamMapper;
-import ch.zhaw.vivi.webContext.domain.exam.dto.ExamDTO;
-import ch.zhaw.vivi.webContext.domain.givenResponse.GivenResponse;
-import ch.zhaw.vivi.webContext.domain.responseOption.ResponseOption;
-import ch.zhaw.vivi.webContext.domain.responseOption.dto.ResponseOptionDTO;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import ch.zhaw.vivi.webContext.domain.ongoingExam.dto.OngoingExamDTO;
+import ch.zhaw.vivi.webContext.domain.ongoingExam.dto.OngoingExamMapper;
 import io.swagger.annotations.*;
-import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.spring.web.json.Json;
 
 import javax.validation.Valid;
-import java.io.IOException;
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
- * This class holds all REST endpoints targeted towards the entity completedExam.
+ * This class holds all REST endpoints targeted towards the entity ongoingExam.
  * 
  * @author Yves Kaufmann
  *
@@ -34,7 +22,7 @@ import java.util.Set;
 @RequestMapping("/ongoingExams")
 @Api(
 		value = "CompletedExamController",
-		description = "This class holds all REST endpoints targeted towards the entity completedExam",
+		description = "This class holds all REST endpoints targeted towards the entity ongoingExam",
 		authorizations = { @Authorization(
 			value = "predefined authorization scheme",
 			scopes = {
@@ -59,19 +47,19 @@ public class OngoingExamController {
 	}
 
 	/**
-	 * This method returns the requested completedExam
+	 * This method returns the requested ongoingExam
 	 *
-	 * @param id	Id of the requested completedExam
-	 * @return		ResponseEntity with the completedExam that was requested
+	 * @param id	Id of the requested ongoingExam
+	 * @return		ResponseEntity with the ongoingExam that was requested
 	 */
 	@ApiOperation(
-			value = "This endpoint returns the requested completedExam",
+			value = "This endpoint returns the requested ongoingExam",
 			response = OngoingExamDTO.class
 	)
 	@ApiImplicitParams(
 			{
 				@ApiImplicitParam(
-						value = "Id of requested completedExam",
+						value = "Id of requested ongoingExam",
 						required = true
 				)}
 	)
@@ -97,17 +85,17 @@ public class OngoingExamController {
 	}
 
 	/**
-	 * This method creates an completedExam
+	 * This method creates an ongoingExam
 	 *
-	 * @return		ResponseEntity with the completedExam that was created
+	 * @return		ResponseEntity with the ongoingExam that was created
 	 */
 	@ApiOperation(
-		value = "This endpoint creates an completedExam",
+		value = "This endpoint creates an ongoingExam",
 		response = OngoingExam.class
 	)
 	@ApiImplicitParams(
 			{ @ApiImplicitParam(
-				value = "The completedExam to be created",
+				value = "The ongoingExam to be created",
 				required = true
 			)}
 	)
@@ -127,17 +115,17 @@ public class OngoingExamController {
 
 	/**
 	 *
-	 * @param id	Id from the completedExam which will get updated
-	 * @param ongoingExamDTO	Updated completedExam
+	 * @param id	Id from the ongoingExam which will get updated
+	 * @param ongoingExamDTO	Updated ongoingExam
 	 * @return
 	 */
 	@ApiOperation(
-			value = "This endpoint updates the requested completedExam",
+			value = "This endpoint updates the requested ongoingExam",
 			response = OngoingExam.class
 		)
 		@ApiImplicitParams(
 				{ @ApiImplicitParam(
-					value = "The current completedExam",
+					value = "The current ongoingExam",
 					required = true
 				) }
 			)
@@ -154,18 +142,18 @@ public class OngoingExamController {
 		}
 	
 	/**
-	 * This method deletes the requested completedExam
+	 * This method deletes the requested ongoingExam
 	 *
-	 * @param  id Id of the completedExam that should be deleted
+	 * @param  id Id of the ongoingExam that should be deleted
 	 * @return    ResponseEntity with the outcome of the deletion process
 	 */
 	@ApiOperation(
-		value = "This endpoint deletes the requested completedExam",
+		value = "This endpoint deletes the requested ongoingExam",
 		response = OngoingExam.class
 	)
 	@ApiImplicitParams(
 		{ @ApiImplicitParam(
-			value = "Id of requested completedExam",
+			value = "Id of requested ongoingExam",
 			required = true
 		) }
 	)
@@ -178,7 +166,7 @@ public class OngoingExamController {
 	/**
 	 * This endpoint adds a response to the ongoing exam
 	 *
-	 * @param  id Id of the completedExam that should be updated
+	 * @param  id Id of the ongoingExam that should be updated
 	 * @param  id Id of the given responseOption
 	 * @return    ResponseEntity with the outcome of the process
 	 */
@@ -187,7 +175,7 @@ public class OngoingExamController {
 	)
 	@ApiImplicitParams(
 			{ @ApiImplicitParam(
-					value = "Id of requested completedExam",
+					value = "Id of requested ongoingExam",
 					required = true
 			), @ApiImplicitParam(
 					value = "Id of requested responseOption",
@@ -195,7 +183,7 @@ public class OngoingExamController {
 			) }
 	)
 	@PutMapping("/{id}/responseOption/{respond}")
-	public ResponseEntity<Void> addGivenResponseById(@PathVariable Long id, @PathVariable Long respond){
+	public ResponseEntity<Void> addGivenResponseById(@PathVariable Long id, @PathVariable Long respond) throws IllegalAccessException {
 		var ongoingExam = ongoingExamService.findById(id);
 		var responseOption = ongoingExamService.findResponseOptionById(respond);
 
@@ -204,18 +192,18 @@ public class OngoingExamController {
 	}
 
 	/**
-	 * This endpoint completes the requested completedExam
+	 * This endpoint completes the requested ongoingExam
 	 *
-	 * @param  id Id of the completedExam that should be completed
+	 * @param  id Id of the ongoingExam that should be completed
 	 * @return    ResponseEntity with the outcome of the process
 	 */
 	@ApiOperation(
-			value = "This endpoint completes the requested completedExam",
+			value = "This endpoint completes the requested ongoingExam",
 			response = OngoingExam.class
 	)
 	@ApiImplicitParams(
 			{ @ApiImplicitParam(
-					value = "Id of requested completedExam",
+					value = "Id of requested ongoingExam",
 					required = true
 			) }
 	)
