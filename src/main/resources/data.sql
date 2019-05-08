@@ -148,6 +148,39 @@ INSERT INTO public.exam(id, name, start_date, end_date, duration, minimum_score)
 			70
 );
 
+INSERT INTO public.exam(id, name, start_date, end_date, duration, minimum_score) VALUES (
+			2,
+			'Cambridge First C1',
+			'2019-05-10',
+			'2019-05-10',
+			4,
+			60
+);
+
+INSERT INTO public.ongoing_exam(
+	completed, end_time, passed, score, start_time, exam_id)
+	VALUES (true, '12:15:06', true, 80, '10:00:00', 1);
+	
+INSERT INTO public.ongoing_exam(
+	completed, end_time, passed, score, start_time, exam_id)
+	VALUES (true, '11:15:06', true, 50, '10:00:00', 1);
+	
+INSERT INTO public.ongoing_exam(
+	completed, end_time, passed, score, start_time, exam_id)
+	VALUES (true, '12:05:06', true, 20, '10:00:00', 1);
+	
+INSERT INTO public.ongoing_exam(
+	completed, end_time, passed, score, start_time, exam_id)
+	VALUES (true, '12:15:06', true, 70, '10:00:00', 2);
+	
+INSERT INTO public.ongoing_exam(
+	completed, end_time, passed, score, start_time, exam_id)
+	VALUES (true, '11:15:06', true, 50, '10:00:00', 2);
+	
+INSERT INTO public.ongoing_exam(
+	completed, end_time, passed, score, start_time, exam_id)
+	VALUES (true, '12:05:06', true, 90, '10:00:00', 2);
+	
 SET session_replication_role = DEFAULT;
 		
 		

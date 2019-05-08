@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
 import java.util.Set;
+import java.util.List;
 
 /**
  * This class implements the service-interface which holds all data access related methods targeted towards the
@@ -107,5 +108,12 @@ public class OngoingExamServiceImpl extends ExtendedServiceImpl<OngoingExam> imp
 		}
 		return true;
 	}
+	
+	public List<Object> getAverageScore() {
+		//Get average score for each exam 
+		return ((OngoingExamRepository) repository).getAverageScore();
+	}
 
 }
+
+

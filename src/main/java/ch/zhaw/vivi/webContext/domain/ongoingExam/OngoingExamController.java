@@ -215,5 +215,21 @@ public class OngoingExamController {
  		ongoingExamService.completeExam(ongoingExam);
 		return new ResponseEntity<>(ongoingExam, HttpStatus.OK);
 	}
+	
+	/**
+	 * This endpoint returns the average score for each Exam
+	 *
+	 * @return		List with average Scores for each Exam
+	 */
+	@ApiOperation(
+			value = "This endpoint returns the average score for each Exam",
+			response = Double.class
+	)
+	@GetMapping({"/averageScores"})
+	public ResponseEntity<List<Object>> getAverageScore() {
+		//Get average score for each exam 
+		List<Object> scores = ongoingExamService.getAverageScore();
+			return new ResponseEntity<>(scores, HttpStatus.OK);
+	}
 
 }
